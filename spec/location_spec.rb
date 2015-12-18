@@ -45,5 +45,19 @@ describe Location do
       expect(table_top).to receive(:has_coordinate?).with(coodrinate).and_return(false)
       expect(invalid_location).not_to be_valid
     end
+
+    it "should not be valid if the given direction is not a valid one" do
+      table_top = TableTop.new(3,3)
+      coodrinate = Coordinate.new(3,2)
+      invalid_location = Location.new(coodrinate, "NOT VALID DIRECTION", table_top)
+
+      expect(invalid_location).not_to be_valid
+    end
+
+    it "should not be valid if the given table top is not valid " do
+      invalid_location = Location.new(Coordinate.new(3,2), Direction::NORTH, "something")
+
+      expect(invalid_location).not_to be_valid
+    end
   end
  end

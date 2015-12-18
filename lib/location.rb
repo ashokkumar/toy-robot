@@ -1,4 +1,6 @@
 require './lib/coordinate'
+require './lib/direction'
+require './lib/table_top'
 
 class Location
   def initialize(coordinate, direction, table_top)
@@ -21,7 +23,7 @@ class Location
   end
 
   def valid?
-    @table_top.has_coordinate?(@coordinate)
+    (@table_top.is_a?(TableTop) && @table_top.has_coordinate?(@coordinate) && @direction.is_a?(Direction))
   end
 
   def to_s

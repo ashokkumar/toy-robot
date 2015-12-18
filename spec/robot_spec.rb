@@ -4,6 +4,7 @@ describe Robot do
   let(:robot) {Robot.new}
   let(:table_top) {TableTop.new(3,3)}
   let(:location) {Location.new(Coordinate.new(2,3), Direction::SOUTH, table_top)}
+
   before do
     robot.place(location)
   end
@@ -11,6 +12,13 @@ describe Robot do
   describe 'place' do
     it "should place the robot in the given location" do      
       expect(robot.report).to eq("2,3,SOUTH")
+    end
+
+    it "should assign the location to robot only if location is valid" do
+      new_robot = Robot.new
+      expect(location).to receive(:valid?).and_return(false)
+      new_robot.place(location)
+      expect(new_robot.report).to eq("Not placed Yet!!!")
     end
   end
 

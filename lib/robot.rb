@@ -1,11 +1,13 @@
 class Robot
 
+  INVALID_LOCATION_MSG = "Not placed Yet!!!"
+  
   def place(location)
-    @location = location
+    @location = location if location.valid?
   end
 
   def report
-    @location.to_s
+    @location ? @location.to_s : INVALID_LOCATION_MSG
   end
 
   def left
