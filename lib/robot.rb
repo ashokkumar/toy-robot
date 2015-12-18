@@ -7,4 +7,8 @@ class Robot
   def report
     @location.to_s
   end
+
+  def move
+    @location = @location.move
+  end
 end
