@@ -10,10 +10,6 @@ class Coordinate
     Coordinate.new(@x + other_coordinate.x, @y + other_coordinate.y)
   end
 
-  def ==(other_coordinate)
-    @x == other_coordinate.x && @y == other_coordinate.y
-  end
-
   def to_s
     "#{x},#{y}"
   end
