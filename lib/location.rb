@@ -19,6 +19,10 @@ class Location
     Location.new(@coordinate, @direction.right, @table_top)
   end
 
+  def valid?
+    @table_top.has_coordinate?(@coordinate)
+  end
+
   def to_s
     "#{@coordinate.to_s},#{@direction.to_s}"
   end

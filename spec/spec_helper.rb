@@ -1,4 +1,5 @@
 require './lib/robot'
+require './lib/table_top'
 require './lib/coordinate'
 require './lib/direction'
 require './lib/location'
