@@ -1,34 +1,25 @@
-require './lib/coordinate_direction'
+require './lib/coordinate'
 
 class Location
-  include CoordinateDirection
-
-
-  def initialize(x_coordinate, y_coordinate, direction, table_top)
-    @coordinate = coordinate(x_coordinate, y_coordinate)
-    @direction = directions[direction.downcase.to_sym]
+  def initialize(coordinate, direction, table_top)
+    @coordinate = coordinate
+    @direction = direction
     @table_top = table_top
   end
 
   def move
-    Location.new(@coordinate.x_coordinate + @direction.coordinate_delta.x_coordinate, 
-                 @coordinate.y_coordinate + @direction.coordinate_delta.y_coordinate, 
-                 @direction.name, @table_top)
+    Location.new(@direction.move(@coordinate), @direction, @table_top)
   end
 
   def left
-    Location.new(@coordinate.x_coordinate, @coordinate.y_coordinate, @direction.on_left, @table_top)
+    Location.new(@coordinate, @direction.left, @table_top)
   end
 
   def right
-    Location.new(@coordinate.x_coordinate, @coordinate.y_coordinate, @direction.on_right, @table_top)
-  end
-
-  def valid?
-    table_top.has_coordinate?(@coordinate)
+    Location.new(@coordinate, @direction.right, @table_top)
   end
 
   def to_s
-    "#{@coordinate.x_coordinate},#{@coordinate.y_coordinate},#{@direction.name}"
+    "#{@coordinate.to_s},#{@direction.to_s}"
   end
 end

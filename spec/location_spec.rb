@@ -1,19 +1,12 @@
 require 'spec_helper'
 
 describe Location do  
-  let(:location) {Location.new(2,3,"NORTH", TableTop.new(3,3))}
+  let(:location) {Location.new(Coordinate.new(2,3), Direction::NORTH, TableTop.new(3,3))}
 
   describe "initialize" do
     it "should create location instance with coordinate direction and table_top" do
       expect(location.to_s).to eq("2,3,NORTH")
     end
-
-    # describe "validation" do
-    #   it "should not be valid if the coordinates are not valid" do
-    #     table_top = TableTop.new(3,3)        
-    #     Location.new(3,4,"NORTH",table_top)
-    #   end
-    # end
   end
 
   describe "move" do
