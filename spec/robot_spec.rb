@@ -19,5 +19,12 @@ describe Robot do
       robot.move
     end
   end
+
+  describe 'turn' do
+    it "should turn the robot to left" do
+      expect(location).to receive(:left)
+      robot.left
+    end
+  end
   
 end

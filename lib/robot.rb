@@ -8,6 +8,10 @@ class Robot
     @location.to_s
   end
 
+  def left
+    @location.left
+  end
+
   def move
     @location = @location.move
   end
