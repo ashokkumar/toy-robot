@@ -18,6 +18,11 @@ describe Location do
       new_location = location.left
       expect(new_location.move.to_s).to eq("1,2,WEST")
     end
+
+    it "should return the same location of the moved location is invalid" do
+      new_location = location.move
+      expect(new_location.move.to_s).to eq("2,3,NORTH")
+    end
   end
 
   describe "left" do

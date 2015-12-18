@@ -8,7 +8,8 @@ class Location
   end
 
   def move
-    Location.new(@direction.move(@coordinate), @direction, @table_top)
+    new_location = Location.new(@direction.move(@coordinate), @direction, @table_top)
+    new_location.valid? ? new_location : self
   end
 
   def left
