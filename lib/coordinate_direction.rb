@@ -8,6 +8,10 @@ module CoordinateDirection
       directions[on_left]
     end
 
+    def right
+      directions[on_right]
+    end
+
   end
 
   def coordinate(x_coordinate, y_coordinate)    

@@ -19,6 +19,10 @@ class Location
     Location.new(@coordinate.x_coordinate, @coordinate.y_coordinate, @direction.on_left)
   end
 
+  def right
+    Location.new(@coordinate.x_coordinate, @coordinate.y_coordinate, @direction.on_right)
+  end
+
   def to_s
     "#{@coordinate.x_coordinate},#{@coordinate.y_coordinate},#{@direction.name}"
   end

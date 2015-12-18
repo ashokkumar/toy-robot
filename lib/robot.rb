@@ -12,6 +12,10 @@ class Robot
     @location.left
   end
 
+  def right
+    @location.right
+  end
+
   def move
     @location = @location.move
   end
