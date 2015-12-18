@@ -9,15 +9,9 @@ class Robot
     @location ? @location.to_s : INVALID_LOCATION_MSG
   end
 
-  def left
-    @location = @location.left if @location
-  end
-
-  def right
-    @location = @location.right if @location
-  end
-
-  def move
-    @location = @location.move if @location
+  [:left, :right, :move].each do |method|
+    define_method method do
+      @location = @location.send(method) if @location
+    end
   end
 end
