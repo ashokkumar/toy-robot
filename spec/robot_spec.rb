@@ -18,7 +18,7 @@ describe Robot do
       new_robot = Robot.new
       expect(location).to receive(:valid?).and_return(false)
       new_robot.place(location)
-      expect(new_robot.report).to eq("Not placed Yet!!!")
+      expect(new_robot.report).to eq(Robot::INVALID_LOCATION_MSG)
     end
   end
 

@@ -1,6 +1,5 @@
 class Robot
-
-  INVALID_LOCATION_MSG = "Not placed Yet!!!"
+  INVALID_LOCATION_MSG = "Not placed on table top yet!!!"
   
   def place(location)
     @location = location if location.valid?
@@ -11,14 +10,14 @@ class Robot
   end
 
   def left
-    @location = @location.left
+    @location = @location.left if @location
   end
 
   def right
-    @location = @location.right
+    @location = @location.right if @location
   end
 
   def move
-    @location = @location.move
+    @location = @location.move if @location
   end
 end

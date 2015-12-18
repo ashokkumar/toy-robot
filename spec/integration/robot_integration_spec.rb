@@ -68,8 +68,18 @@ describe Robot do
 
   it "shoud not fall out even in the initial load" do
     robot.place(Location.new(Coordinate.new(5, 6), Direction::NORTH, table_top))
-    expect(robot.report).to eq("Not placed Yet!!!")
+    expect(robot.report).to eq(Robot::INVALID_LOCATION_MSG)
   end
 
+# - The first valid command to the robot is a PLACE command, after that, any
+#   sequence of commands may be issued, in any order, including another PLACE
+#   command. The application should discard all commands in the sequence until
+#   a valid PLACE command has been executed.
 
+  it "should ignore all the commands till a valid place command is issues" do
+    robot.move
+    robot.left
+    robot.right
+    expect(robot.report).to eq(Robot::INVALID_LOCATION_MSG)
+  end
 end
