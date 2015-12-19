@@ -1,9 +1,11 @@
 require './lib/coordinate'
 
 class Direction  
-  def initialize(name, coordinate_delta)
+  def initialize(name, coordinate_delta, on_left, on_right)
     @name = name
     @coordinate_delta = coordinate_delta
+    @on_left = on_left
+    @on_right = on_right
   end
 
   def move(coordinate)
@@ -11,28 +13,19 @@ class Direction
   end
 
   def left
-    direction_order[(direction_index + 1) % direction_order.size] 
+    Direction.const_get(@on_left)
   end
 
   def right
-    direction_order[direction_index - 1]
+    Direction.const_get(@on_right)
   end
 
   def to_s
     @name
   end
 
-  NORTH = Direction.new("NORTH", Coordinate.new(0, 1))
-  SOUTH = Direction.new("SOUTH", Coordinate.new(0, -1))
-  WEST = Direction.new("WEST", Coordinate.new(-1, 0))
-  EAST = Direction.new("EAST", Coordinate.new(1, 0))
-
-  private
-  def direction_order
-    [EAST, NORTH, WEST, SOUTH]
-  end
-
-  def direction_index
-    direction_order.index(self)
-  end
+  NORTH = Direction.new("NORTH", Coordinate.new(0,1), "WEST", "EAST")
+  SOUTH = Direction.new("SOUTH", Coordinate.new(0,-1), "EAST", "WEST")
+  WEST = Direction.new("WEST", Coordinate.new(-1,0), "SOUTH", "NORTH")
+  EAST = Direction.new("EAST", Coordinate.new(1,0), "NORTH", "SOUTH")
 end
