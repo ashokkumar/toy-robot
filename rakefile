@@ -1,12 +1,12 @@
 require './lib/simulator.rb'
 
 task :play do
-  @simulator ||= Simulator.new
+  @simulator ||= Simulator.new(TableTop.new(5, 5), Robot.new)
   STDOUT.puts "Please enter the command or 'Q' to quit?"
   input = STDIN.gets.strip
   if input != 'Q' && !input.empty?
     output = @simulator.execute(input)
-    STDOUT.puts "Invalid command!!!" unless output
+    STDOUT.puts "Invalid command / Robot not yet placed on the table" unless output
     STDOUT.puts "Output: #{output}" if input == 'REPORT'
     Rake::Task["play"].reenable
     Rake::Task["play"].invoke

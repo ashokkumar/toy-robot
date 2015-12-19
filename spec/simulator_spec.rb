@@ -33,5 +33,20 @@ describe Simulator do
       output = simulator.execute("invalid_cmd")
       expect(output).to be_falsy
     end
+
+    it "should return false if no arguments given for PLACE cmd" do
+      output = simulator.execute("PLACE")
+      expect(output).to be_falsy
+    end
+
+    it "should return false if invalid coordinates given for PLACE cmd" do
+      output = simulator.execute("PLACE a,b,NORTH")
+      expect(output).to be_falsy
+    end
+
+    it "should return false if invalid direction given for PLACE cmd" do
+      output = simulator.execute("PLACE 0,0,SOUTHEAST")
+      expect(output).to be_falsy
+    end
   end
 end

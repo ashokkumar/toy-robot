@@ -6,7 +6,8 @@ require './lib/direction'
 require './lib/robot'
 
 class Simulator
-  VALID_COMMANDS = ['PLACE', 'REPORT', 'MOVE', 'LEFT', 'RIGHT']
+  COMMAND_WITH_ARGS = 'PLACE'
+  OTHER_COMMANDS = ['REPORT', 'MOVE', 'LEFT', 'RIGHT']
 
   def initialize(table_top, robot)
     @table_top = table_top
@@ -14,28 +15,29 @@ class Simulator
   end
 
   def execute(input)
-    operator, arguments = process_input(input)
-    valid_command?(operator) && execute_cmd(operator.downcase, arguments)
+    operator, args = process_input(input)
+    valid_command?(operator, args) && execute_cmd(operator.downcase, convert_to_location(args))
   end
 
   private
 
-  def valid_command?(command)
-    VALID_COMMANDS.include? command
+  def valid_command?(command, args)
+    (COMMAND_WITH_ARGS == command && validate_args(args)) || OTHER_COMMANDS.include?(command)
+  end
+
+  def validate_args(args)
+    args =~ /^\d,\d,\w*$/ && Direction.constants.include?(args.split(",").last.to_sym)
   end
 
   def process_input(input)
-    tokens = input.split(/\s+/)
-    if tokens.first && tokens.first == VALID_COMMANDS.first
-      [tokens.first, convert_to_location(tokens.last)].flatten
-    else
-      tokens.first
-    end
+    input.split(/\s+/)
   end
 
   def convert_to_location(args_str)
-    values = args_str.split(",")
-    [Location.new(Coordinate.new(values[0].to_i, values[1].to_i), Direction.const_get(values[2]), @table_top)]
+    if args_str
+      values = args_str.split(",")
+      Location.new(Coordinate.new(values[0].to_i, values[1].to_i), Direction.const_get(values[2]), @table_top)
+    end
   end
 
   def execute_cmd(*cmd)
