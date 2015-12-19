@@ -10,7 +10,7 @@ describe Robot do
   end
 
   describe 'place' do
-    it "should place the robot in the given location" do      
+    it "should place the robot in the given location" do
       expect(robot.report).to eq("2,3,SOUTH")
     end
 

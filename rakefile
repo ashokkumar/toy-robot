@@ -1,0 +1,16 @@
+require './lib/simulator.rb'
+
+task :play do
+  @simulator ||= Simulator.new
+  STDOUT.puts "Please enter the command or 'Q' to quit?"
+  input = STDIN.gets.strip
+  if input != 'Q' && !input.empty?
+    output = @simulator.execute(input)
+    STDOUT.puts "Invalid command!!!" unless output
+    STDOUT.puts "Output: #{output}" if input == 'REPORT'
+    Rake::Task["play"].reenable
+    Rake::Task["play"].invoke
+  else
+    STDOUT.puts "Thank you for playing with Toy Robot!!!"
+  end
+end
