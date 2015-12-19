@@ -26,6 +26,11 @@ describe Simulator do
         expect(simulator.execute(cmd)).to eq(output)
       end
     end
+
+    it "should return true if the result of the executed cmd from robot is not truthy" do
+      expect(robot).to receive(:move).and_return(nil)
+      expect(simulator.execute("MOVE")).to be_truthy
+    end
   end
 
   describe 'invalid command' do

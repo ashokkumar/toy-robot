@@ -6,7 +6,7 @@ task :play do
   input = STDIN.gets.strip
   if input != 'Q' && !input.empty?
     output = @simulator.execute(input)
-    STDOUT.puts "Invalid command / Robot not yet placed on the table" unless output
+    STDOUT.puts "Invalid command. Usage - (PLACE 0,0,NORTH|MOVE|LEFT|RIGHT|REPORT)" unless output
     STDOUT.puts "Output: #{output}" if input == 'REPORT'
     Rake::Task["play"].reenable
     Rake::Task["play"].invoke

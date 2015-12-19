@@ -16,7 +16,7 @@ class Simulator
 
   def execute(input)
     operator, args = process_input(input)
-    valid_command?(operator, args) && execute_cmd(operator.downcase, convert_to_location(args))
+    valid_command?(operator, args) && (execute_cmd(operator.downcase, convert_to_location(args)) || true)
   end
 
   private
