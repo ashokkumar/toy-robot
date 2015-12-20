@@ -1,0 +1,27 @@
+To install required GEMs, please run the following commands 'bundle install'
+
+To execute the program, please run 'bundle exec rake play' and start entering the commands.
+
+To quit enter 'Q'  
+
+All the given test case are covered as part of robot_integration_spec.rb integration test
+
+
+Design decisions:-
+------------------
+
+I came up with the following domain objects:-
+
+- TableTop
+- Robot
+- Location
+- Direction
+- Coordinate
+
+
+I came up with the `location` object as I felt that will reduce the coupling between the `robot` and `tabletop` and also it will wrap the the `coordinate` and `direction` as one single interface to `robot`.
+
+
+- Simulator
+
+Simulator is more of an orchestrator with all the domain objects and handle the input and output.
