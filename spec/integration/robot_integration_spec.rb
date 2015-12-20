@@ -76,7 +76,7 @@ describe Robot do
 #   command. The application should discard all commands in the sequence until
 #   a valid PLACE command has been executed.
 
-  it "should ignore all the commands till a valid place command is issues" do
+  it "should ignore all the commands till a valid place command is issued" do
     robot.move
     robot.left
     robot.right
